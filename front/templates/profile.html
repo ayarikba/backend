@@ -1,0 +1,170 @@
+<div class="container ">
+    <div class="main-body mt-5 pt-2">
+        <div class="row gutters-sm">
+            <div class="col-md-4 mb-3">
+                <div class="card transparent-card">
+                    <div class="card-body">
+                        <div class="d-flex flex-column align-items-center text-center">
+                            <img id="profileAvatar" src="" class="rounded-circle object-fit-cover editProfilePic"
+                                width="200" height="200">
+                            <div class="mt-3">
+                                <h4 id="userName">UserName</h4>
+                                <button id="editProfile" type="button" class="btn btn-primary transparent-card border"
+                                    data-bs-toggle="modal" data-bs-target="#editProfileModal">Edit Profile</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-8">
+                <div class="row">
+                    <div class="col-sm-5">
+                        <div class="card mb-3">
+                            <div class="card-body">
+                                <h6 class="d-flex align-items-center mb-3"><i
+                                        class="material-icons text-info mr-2">Win</i></h6>
+                                <small>Win Rate</small>
+                                <div class="progress mb-3" style="height: 5px">
+                                    <div id="winCount" class="progress-bar bg-primary" role="progressbar" style="width: 50%"
+                                        aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-5">
+                        <div class="card mb-3">
+                            <div class="card-body">
+                                <h6 class="d-flex align-items-center mb-3"><i
+                                        class="material-icons text-info mr-2">Lose</i></h6>
+                                <small>Lose Rate</small>
+                                <div class="progress mb-3" style="height: 5px">
+                                    <div id="loseCount" class="progress-bar bg-primary" role="progressbar" style="width: 80%"
+                                        aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-2">
+                        <div class="card">
+                            <button id="listRequest" type="button" class="btn btn-primary" data-bs-toggle="modal"
+                                data-bs-target="#requestModal">
+                                Friend Requests
+                            </button>
+                        </div>
+                    </div>
+                    <!-- Biografi -->
+                    <div class="col-lg-10">
+                        <div class="card mb-3">
+                            <div class="card-body">
+                                <h6 class="d-flex align-items-center mb-3"><i
+                                        class="material-icons text-info mr-2">Biography</i></h6>
+                                <p id="profileBio">Biography</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-2 ms-2">
+                            <h2 class="ms-4">2FA: </h2>
+                        </div>
+                        <div class="col-md-2 mt-1">
+                            <h3 id="2FAIsActive" class="text-success" style="display: none;">Active</h3>
+                            <h3 id="2FAIsDeactive" class="text-danger" style="display: block;">Deactive</h3>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-3 ms-4">
+                                <button id="2FaEnableBtn" type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#exampleModal" style="display: block;">Enable</button>
+                                <button id="2FaDisableBtn" type="button" class="btn btn-danger" style="display: none;">Disable</button>
+                            </div>
+                            
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="requestModal" tabindex="-1" aria-labelledby="requestModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="requestModalLabel">Friend Requests
+                    </h5>
+                    <button id="refreshRequest" class="refresh-button"><i class="fa fa-refresh"></i> Refresh</button>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form>
+                        <div class="mb-3">
+                            <h3 id="zeroRequest" style="display: none;">You don't have any requests.</h3>
+                            <ul id="friend-request-list">
+
+                            </ul>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="editProfileModal" tabindex="-1" aria-labelledby="editProfileModal" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="exampleModalLabel">Edit Profile</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form>
+                    <div class="input-group mb-3">
+                        <img id="preview" src="#" alt="your image" style="display: none;" width="200" height="200" />
+                        <input type="file" accept=".jpg, .png, .jpeg, .gif" class="form-control" id="inputProfilePic">
+                        <label class="input-group-text" for="inputProfilePic">Upload Profile Picture</label>
+                    </div>
+                    <div class="mb-3">
+                        <label for="inputProfileUsername" class="col-form-label">UserName:</label>
+                        <input type="text" class="form-control" id="inputProfileUsername">
+                    </div>
+                    <div class="mb-3">
+                        <label for="bio" class="col-form-label">Biography:</label>
+                        <textarea class="form-control" id="bio"></textarea>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button id="updateProfileBtn" type="button" class="btn btn-primary">Edit</button>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5" id="exampleModalLabel">2FA</h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <form>
+            <div class="mb-3">
+                <h3>Instructers:</h3>
+                <p>1. Scan the QR code with your Google Authenticator app.</p>
+                <p>2. Enter the code from the app.</p>
+              </div>
+            <div class="input-group mb-3">
+                <canvas style="border: 1rem; border-radius: 2rem;" width="220" height="220">
+                    <img id="preview" src="#" alt="your image" style="display: none;" width="200" height="200" />
+                </canvas>
+            </div>
+            <div class="mb-3">
+              <label for="2FaCode" class="col-form-label">Code: </label>
+              <input type="text" class="form-control" id="2FaCode">
+            </div>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          <button id="enable2FA" type="button" class="btn btn-primary">Enbale</button>
+        </div>
+      </div>
+    </div>
+  </div>

@@ -1,0 +1,71 @@
+.gradient-custom {
+	/* fallback for old browsers */
+	background: #6a11cb;
+
+	/* Chrome 10-25, Safari 5.1-6 */
+	background: -webkit-linear-gradient(to right, rgba(106, 17, 203, 1), rgba(37, 117, 252, 1));
+
+	/* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+	background: linear-gradient(to right, rgba(106, 17, 203, 1), rgba(37, 117, 252, 1))
+}
+
+/* #gameCanvas {
+	border: 5px solid black;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+} */
+
+
+.page_404{ padding:40px 0; background:#fff; font-family: 'Arvo', serif;
+}
+
+.page_404  img{ width:100%;}
+
+.four_zero_four_bg{
+ 
+ background-image: url(https://cdn.dribbble.com/users/285475/screenshots/2083086/dribbble_1.gif);
+    height: 400px;
+    background-position: center;
+ }
+ 
+ 
+ .four_zero_four_bg h1{
+ font-size:80px;
+ }
+ 
+  .four_zero_four_bg h3{
+       font-size:80px;
+       }
+       
+       .link_404{      
+  color: #fff!important;
+    padding: 10px 20px;
+    background: #39ac31;
+    margin: 20px 0;
+    display: inline-block;}
+  .contant_box_404{ margin-top:-50px;}
+
+  .refresh-button {
+    background-color: #4CAF50; /* Butonun arka plan rengi */
+    border: none; /* Kenarlık kaldırılıyor */
+    color: white; /* Yazı rengi */
+    padding: 15px 32px; /* İç boşluk */
+    text-align: center; /* Yazı hizalaması */
+    text-decoration: none; /* Altı çizili metin efekti kaldırılıyor */
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer; /* İmleç, butonun üzerine geldiğinde el şeklini alır */
+    transition-duration: 0.4s; /* Geçiş süresi */
+}
+
+.refresh-button:hover {
+    background-color: #45a049; /* İmleç, butonun üzerine geldiğinde arka plan rengi değişir */
+    color: white; /* İmleç, butonun üzerine geldiğinde yazı rengi değişir */
+}
+
+.refresh-button i {
+    margin-right: 5px; /* İkon ve yazı arasındaki boşluk */
+}

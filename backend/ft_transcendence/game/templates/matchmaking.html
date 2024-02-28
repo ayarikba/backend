@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Pong Game</title>
+  <style>
+    #gameCanvas {
+      border: 5px solid black;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+    }
+    /* Additional styling for the inner canvas or any other element */
+    /* ... */
+  </style>
+</head>
+<body>
+  <canvas id="gameCanvas" width="900px" height="600px"></canvas>
+  <!-- Add any other elements or canvases you need for your game -->
+  <div id="waitingScreen" style="display: none;">
+    <p>Waiting for another player to join...</p>
+    <!-- You can add additional messages or styling here -->
+  </div>
+  {% block scripts %}
+{{ room.slug|json_script:"json-roomname" }}
+{{room.user_l.username|json_script:"json-username_l"}}
+{{room.user_r.username|json_script:"json-username_r"}}
+{{user.username|json_script:"json-username_owner"}}
+  <script>
+  const roomName = JSON.parse(document.getElementById('json-roomname').textContent);
+  const username_l = JSON.parse(document.getElementById('json-username_l').textContent);
+  const username_r = JSON.parse(document.getElementById('json-username_r').textContent);
+  const username_owner = JSON.parse(document.getElementById('json-username_owner').textContent);
+  const canvas = document.getElementById('gameCanvas');
+  const ctx = canvas.getContext('2d');
+  const socket = new WebSocket(
+    'ws://'
+    + window.location.host
+    + '/wss/'
+    + "matchmaking/"
+);
+
+document.addEventListener('keydown', handleKeyDown);
+function handleKeyDown(e) {{
+  if (e.key === 'w')
+  {
+  var data = {
+  'message': 'message'
+ }
+ socket.send(JSON.stringify({data}));
+  }
+}}
+socket.onmessage = function (event)
+{
+ console.log("Message received")
+ var data = JSON.parse(event.data)
+    console.log(data)
+ }
+
+  </script>
+  {% endblock %}
+</body>
+</html>

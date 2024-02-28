@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Avatar Management</title>
+</head>
+<body>
+    <h1>User Avatar</h1>
+
+    <form id="avatarForm" enctype="multipart/form-data">
+        <!-- Display Avatar Image -->
+        <img id="avatarImage" src="" alt="Avatar" style="max-width: 300px;">
+    
+        <br>
+    
+        <!-- Input for Updating Avatar -->
+        <input type="file" id="avatarInput" accept="image/*" name="avatar">
+        <button type="button" onclick="updateAvatar()">Update Avatar</button>
+    </form>
+
+    <script>
+        // Function to fetch and display the avatar image
+        function getAvatar() {
+            fetch('https://127.0.0.1:8000/get_avatar/')  // Replace with your actual endpoint URL
+                .then(response => response.blob())
+                .then(blob => {
+                    document.getElementById('avatarImage').src = URL.createObjectURL(blob);
+                })
+                .catch(error => console.error('Error fetching avatar:', error));
+        }
+
+// Function to update the avatar
+function updateAvatar() {
+    const input = document.getElementById('avatarInput');
+    const file = input.files[0];
+    createSocketConnection();
+    if (file) {
+        const formData = new FormData();
+        formData.append('avatar', file);
+
+        fetch('https://127.0.0.1:8000/update_avatar/', {
+            method: 'POST',
+            body: formData,
+            // Do not explicitly set Content-Type here
+        })
+        .then(response => response.json())
+        .then(data => {
+            console.log(data.message);
+            // Update the displayed avatar after a successful update
+             getAvatar();
+        })
+        .catch(error => console.error('Error updating avatar:', error));
+    } else {
+        console.error('No file selected');
+    }
+}
+// Socket connection function
+function createSocketConnection() {
+    const socket = new WebSocket('wss://127.0.0.1:8000/ws/online_status/?username=1/');
+
+    socket.addEventListener('open', function (event) {
+        console.log('Socket connection opened');
+        // Perform any necessary actions after the socket connection is opened
+    });
+
+    socket.addEventListener('message', function (event) {
+        console.log('Received message:', event.data);
+        // Handle the received message from the server
+    });
+
+    socket.addEventListener('close', function (event) {
+        console.log('Socket connection closed');
+        // Perform any necessary actions after the socket connection is closed
+    });
+
+    socket.addEventListener('error', function (event) {
+        console.error('Socket connection error:', event);
+        // Handle any errors that occur during the socket connection
+    });
+
+    return socket;
+}
+ 
+
+// Initial fetch to display the avatar when the form is submitted
+document.getElementById('avatarForm').addEventListener('submit', function (event) {
+    event.preventDefault(); // Prevent the default form submission
+    updateAvatar();
+});
+
+        getAvatar();
+    </script>
+</body>
+</html>
